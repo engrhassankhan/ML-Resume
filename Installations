@@ -1,0 +1,17 @@
+Installing Slate:
+
+1. easy_install distribute
+
+2. python -m pip install git+https://github.com/timClicks/slate
+
+
+after Installation may have ther error of "no module utils" then do this:
+
+3. conda install -c conda-forge python-utils
+
+and change the error file as:
+
+from python_utils import *
+
+
+
