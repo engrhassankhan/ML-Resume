@@ -1,3 +1,18 @@
+#Installing Slate:
+
+#1. easy_install distribute
+
+#2. python -m pip install git+https://github.com/timClicks/slate
+
+
+#after Installation may have ther error of "no module utils" then do this:
+
+#3. conda install -c conda-forge python-utils
+
+#and change the error file as:
+
+#from python_utils import *
+
 # Resume Classifier
 
 A simple project made to apply newly learnt Machine Learning algorithms. The Resume Classifier seeks to make the procedure of initial selection of resumes for any job/university interview more robust by doing so based on the data of previously selected and rejected candidates.
