@@ -20,13 +20,20 @@ for i in range(97):
     for j in range(len(doc)):
         each_resume += doc[j]
     resume_list.append(each_resume)
-	
+
+print(len(resume_list))
+
+print(len(resume_list[0]))
 # removing punctuations and other unnecessary characters
 for i in range(len(resume_list)):
-    resume_list[i] = resume_list[i].translate(None, string.punctuation)
-    resume_list[i] = resume_list[i].translate(None, "\n")
-    resume_list[i] = re.sub(r'[\x00-\x08\x0b\x0c\x0e-\x1f\x7f-\xff]', '', resume_list[i])
-	
+
+
+    table = str.maketrans(dict.fromkeys(string.punctuation))
+
+    resume_list[i] = resume_list[i].translate(table)
+    # s = s.translate(None, "\n")
+    # s = re.sub(r'[\x00-\x08\x0b\x0c\x0e-\x1f\x7f-\xff]', '', s)
+
 # labelling the existing resumes as being accepted(1) or being rejected(0)
 # The first 36 resumes are labelled as accepted in this case and a label list is prepared
 label = []
@@ -49,32 +56,33 @@ X_test = features_test.toarray()
 # Using Decision Tree Classifier on the data
 dtclf = tree.DecisionTreeClassifier()
 dtclf = dtclf.fit(X_train, y_train)
-print dtclf.score(X_train, y_train)
-print dtclf.score(X_test, y_test)
-
+print("Decision Tree Classifier")
+print(dtclf.score(X_train, y_train)*100)
+print(dtclf.score(X_test, y_test)*100)
+print("Random Forest Classifier")
 # Using Random Forest Classifier on the data
 rfclf = RandomForestClassifier()
 rfclf = rfclf.fit(X_train, y_train)
-print rfclf.score(X_train, y_train)
-print rfclf.score(X_test, y_test)
-
+print(rfclf.score(X_train, y_train)*100)
+print(rfclf.score(X_test, y_test)*100)
+print("SVM Classifier")
 # Using SVM Classifier on the data
 model_svm = svm.SVC()
 model_svm = model_svm.fit(X_train, y_train)
-print model_svm.score(X_train, y_train)
-print model_svm.score(X_test, y_test)
-
+print(model_svm.score(X_train, y_train)*100)
+print(model_svm.score(X_test, y_test)*100)
+print("Bernoulli Naive Bayes Algorithm")
 # Using Bernoulli Naive Bayes Algorithm
 bnbclf = BernoulliNB()
 bnbclf = bnbclf.fit(X_train, y_train)
-print bnbclf.score(X_train, y_train)
-print bnbclf.score(X_test, y_test)
-
+print(bnbclf.score(X_train, y_train)*100)
+print(bnbclf.score(X_test, y_test)*100)
+print("Gaussian Naive Bayes Algorithm")
 # Using Gaussian Naive Bayes Algorithm
 gnbclf = GaussianNB()
 gnbclf = gnbclf.fit(X_train, y_train)
-print gnbclf.score(X_train, y_train)
-print gnbclf.score(X_test, y_test)
+print(gnbclf.score(X_train, y_train)*100)
+print(gnbclf.score(X_test, y_test)*100)
 
 # Testing a sample resume of a new applicant
 # Replace "your_file_name" with the name of your resume doc and comment out the following lines of code
@@ -83,3 +91,4 @@ print gnbclf.score(X_test, y_test)
 # sample_resume = sample_resume[0]
 # sample_resume = vectorizer.transform([sample_resume])
 # print bnbclf.predict(sample_resume)[0]
+
